@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import LandingPage from "./pages/LandingPage"
-import LoginPage from "./auth/LoginPage"
+import LoginPage from "./pages/auth/LoginPage"
+
 
 
 function App() {
