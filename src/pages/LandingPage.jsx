@@ -19,10 +19,10 @@ const LandingPage = () => {
          </p>
          <div className='mb-4 space-x-0 md:space-x-2 md:mb-8'>
           <Button className="bg-red-700 hover:bg-red-900" asChild>
-            <Link to="/auth/login">Get Started <ArrowRight/></Link>
+            <Link to="/login">Get Started <ArrowRight/></Link>
           </Button>
           <Button variant="secondary" asChild>
-            <Link to="/auth/register">Sign Up <Lightbulb/></Link>
+            <Link to="/register">Sign Up <Lightbulb/></Link>
           </Button>
          </div>
         </div>
