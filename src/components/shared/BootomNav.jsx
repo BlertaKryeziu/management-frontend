@@ -10,7 +10,7 @@ const BootomNav = () => {
     const navigate = useNavigate();
   return (
     <div className='fixed bottom-0 left-0 right-0 bg-[#fde4e4] p-3 h-16 flex justify-around shadow-md'>
-        <Button onClick={() => navigate("DashboardLayout")}
+        <Button onClick={() => navigate("/DashboardLayout")}
         variant="outline"
         className="flex items-center justify-center text-[#333] bg-[#e0e0e0] w-[20%] rounded-lg"
 >
@@ -28,7 +28,7 @@ const BootomNav = () => {
     </Button>   
 
 
-        <Button onClick={() => navigate("/Tavles")}
+        <Button onClick={() => navigate("/TablesPage")}
         variant="outline"
         className="flex items-center justify-center text-[#333] bg-[#e0e0e0] w-[20%]"
 >
