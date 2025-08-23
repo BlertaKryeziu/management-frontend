@@ -34,7 +34,7 @@ const PopularDishes = () => {
         <div className='bg-[#f1f1f1] w-full rounded-lg'>
             <div className='flex justify-between items-center px-6 py-4'>
                 <h1 className='text-[#333] text-lg font-semibold tracking-wide'>Popular Dishes</h1>
-                <Link to="" className="text-[#025cca] text-sm font-semibold">Edit</Link>
+                <Link to="/Products" className="text-[#025cca] text-sm font-semibold">Edit</Link>
             </div>
 
             <div className='overflow-y-auto max-h-[80vh] pr-2 scrollbar-none'>

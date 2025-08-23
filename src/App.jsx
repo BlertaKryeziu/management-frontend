@@ -6,6 +6,7 @@ import DashboardLayout from "./pages/dashboard/DashboardLayout"
 import Header from "./components/shared/Header"
 import TablesPage from "./pages/dashboard/admin/TablesPage"
 import WaiterMenagament from "./pages/dashboard/admin/WaiterMenagament"
+import Products from "./pages/dashboard/admin/Products"
 
 
 
@@ -21,6 +22,7 @@ function App() {
       <Route path="/DashboardLayout" element={<DashboardLayout/>}/> 
       <Route path="/TablesPage" element={<TablesPage/>}/> 
       <Route path="/WaiterMenagament" element={<WaiterMenagament/>}/> 
+      <Route path="/Products" element={<Products/>}/> 
 
 
       
