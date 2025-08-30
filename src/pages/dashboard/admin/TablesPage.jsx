@@ -27,6 +27,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { toast } from 'sonner';
 
 const TablesPage = () => {
 
@@ -46,41 +47,114 @@ const TablesPage = () => {
   const [editStatus, setEditStatus] = useState("available");
   const [editRoom, setEditRoom] = useState("family");
 
-  // funksion për me kriju tavolinë
-  const createTable = (e) => {
-    e.preventDefault()
-    const newTable = {
-      id: Date.now(),
-      number,
-      status,
-      room
-    }
-    setTables([...tables, newTable])
-    setNumber("")
-    setStatus("")
-    setRoom("")
-  }
+
+  const fetchTables = async () => {
+    try {
+      const res = await fetch("http://localhost:8095/api/tablesPage");
+
+      if(!res.ok){
+        setError(`Nuk ka sukses: ${res.status}`);
+        setLoading(false);
+        return;
+      }
+
+const data = await res.json();
+setTables(data);
+setLoading(false);
+  } catch (error) {
+     setError ("Ka ndodhur nje gabim");
+     setLoading(false);
+  } 
+};
+  
 
   // delete
-  const deleteTable = (id) => {
-    setTables(tables.filter(t => t.id !== id))
+ const deleteTable = async (id) => {
+    try {
+      await fetch(`http://localhost:8095/api/tablesPage/delete/${id}`,{
+        method: "DELETE",
+      });
+      fetchTables();
+       toast.success("Tavolina u fshi me sukses!");
+    } catch (error) {
+      setError("Gabim gjate fshirjes.");
+    }
+};
+
+
+const createTable = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("http://localhost:8095/api/tablesPage/create",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        number,
+        status,
+        room: room || null,
+      })
+  });
+
+  if(!res.ok){
+    const error = await res.json();
+    setError(`Gabim: ${error.message || res.statusText}`);
+    return;
   }
+
+  setNumber(''),
+  setStatus('available');
+  setRoom('family');
+  setError(null);
+  fetchTables();
+  } catch (error) {
+    setError("Ndodhi nje gabim gjate krijimit te tavolines.")
+  }
+}
 
   // open edit dialog
   const openEditDialog = (table) => {
-    setEditId(table.id)
+    setEditTableId(table.id)
     setEditNumber(table.number)
     setEditStatus(table.status)
     setEditRoom(table.room)
-    setEditOpen(true)
   }
 
   // update
-  const updateTable = (e) => {
-    e.preventDefault()
-    setTables(tables.map(t => t.id === editId ? { ...t, number: editNumber, status: editStatus, room: editRoom } : t))
-    setEditOpen(false)
-  }
+  const updateTable = async (e) => {
+    e.preventDefault();
+  try {
+    const res = await fetch(`http://localhost:8095/api/tablesPage/update/${editTableId}`,{
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        number: editNumber,
+        status: editStatus,
+        room: editRoom,
+      }),
+    });
+
+    if(!res.ok){
+      const error = await res.json();
+      setError(`Gabim ${error.message || res.statusText}`);
+      return;
+    }
+    setEditOpen(false);
+    fetchTables();
+  } catch (error) {
+    setError("Gabim gjate editimit");
+  }};
+
+  useEffect(() => {
+    fetchTables();
+  }, []);
+
+  if(loading) return <p>Duke u ngarkuar...</p>
+  if(error) return <p style={{color: 'red'}}>{error}</p>;
 
   return (
     <div>

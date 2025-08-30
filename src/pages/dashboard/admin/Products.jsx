@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/table"
 import { Input } from "@/components/ui/input"
 import  { Label } from "@/components/ui/label"
-import { Pencil, Plus, Trash2 } from 'lucide-react';
+import { Pencil, Plus, Trash, Trash2 } from 'lucide-react';
 
 
 const Products = () => {
@@ -31,7 +31,7 @@ const Products = () => {
 
     const fetchProducts = async () => {
         try {
-            const res = await fetch("products");
+            const res = await fetch("http://localhost:8095/api/products");
             const data = await res.json();
             setProducts(data);
         } catch (error) {
@@ -47,8 +47,8 @@ const Products = () => {
         e.preventDefault();
         const method = editId ? "PUT" : "POST";
         const url = editId
-        ? "edit"
-        : "create";
+        ? `http://localhost:8095/api/products/update/${editId}`
+        :  `http://localhost:8095/api/products/create`;
 
         try {
             const res = await fetch(url, {
@@ -86,7 +86,7 @@ const Products = () => {
         if(!confirm) return;
 
         try {
-            const res = await fetch("delete", {
+            const res = await fetch(`http://localhost:8095/api/products/delete/${id}`, {
                 method: "DELETE",
             });
 

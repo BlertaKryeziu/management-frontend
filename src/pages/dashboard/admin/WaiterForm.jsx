@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
     name: z.string().min(2, "Name it too short").max(50),
-    email:  z.string().email("Invaslid email"),
+    email:  z.string().email("Invalid email"),
     password: z.string().min(6, "Password too short"),
     role: z.literal("waiter")
 })
@@ -34,7 +34,7 @@ export default function WaiterForm(){
 
     const onSubmit = async (values) => {
         try {
-            const res = await fetch("create", {
+            const res = await fetch("http://localhost:8095/api/waiter/create", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(values),
@@ -47,10 +47,10 @@ export default function WaiterForm(){
             const newWaiter = await res.json();
             console.log("U shtua: ", newWaiter);
 
-            form.reset();
+            form.reset(); //me pastru fushat
 
             if(typeof window !== "undefined") {
-                const event = new Event("wasiterAdded");
+                const event = new Event("waiterAdded");
                 window.dispatchEvent(event);
             }
         } catch (error) {

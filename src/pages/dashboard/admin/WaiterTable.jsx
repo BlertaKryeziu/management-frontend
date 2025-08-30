@@ -30,7 +30,7 @@ export const WaiterTable = () => {
 
     const fetchWaiters = async () => {
         try {
-            const res = await fetch("api");
+            const res = await fetch("http://localhost:8095/api/waiter");
             const data = await res.json();
             setWaiters(data);
         } catch (error) {
@@ -53,7 +53,7 @@ export const WaiterTable = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const method = "PUT";
-        const url = "edit";
+        const url = `http://localhost:8095/api/waiter/update/${editId}`;
 
         try {
             const res = await fetch(url, {
@@ -80,7 +80,7 @@ export const WaiterTable = () => {
     };
 
     const handleEdit = (waiter) => {
-        setForm({ name: waiter.name, email: waiter.email, password: waiter.password });
+        setForm({ name: waiter.name, email: waiter.email, password:"" });
         setEditId(waiter.id);
         setDialogOpen(true);
     };
@@ -90,7 +90,7 @@ export const WaiterTable = () => {
         if(!confirm) return;
 
         try {
-            const res = await fetch("delete", {
+            const res = await fetch(`http://localhost:8095/api/waiter/delete/${id}`, {
                 method: "DELETE",
             });
             
@@ -110,7 +110,7 @@ export const WaiterTable = () => {
     <TableRow>
       <TableHead>Name</TableHead>
       <TableHead>Email</TableHead>
-      <TableHead>Password</TableHead>
+      
       <TableHead>Actions</TableHead>
     </TableRow>
   </TableHeader>
@@ -120,7 +120,7 @@ export const WaiterTable = () => {
     <TableRow key={waiter.id}>
       <TableCell>{waiter.name}</TableCell>
       <TableCell>{waiter.email}</TableCell>
-      <TableCell>{waiter.password}</TableCell>
+      
       <TableCell className="flex gap-2">
         <Button variant="ghost" onClick={() => handleEdit(waiter)}>
             <Pencil className="w-5 h-5"/>
@@ -140,7 +140,7 @@ export const WaiterTable = () => {
 
 
 <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-  <DialogContent classNam="sm:max-w-[425px]">
+  <DialogContent className="sm:max-w-[425px]">
     <DialogHeader>
       <DialogTitle>{editId}Edit profile</DialogTitle>
     </DialogHeader>
@@ -172,6 +172,7 @@ export const WaiterTable = () => {
                     </Label>
                     <Input
                     id="password"
+                    type="password"
                     value={form.password}
                     onChange={(e) => setForm({...form, password: e.target.value })}
                     className="col-span-3"/>
