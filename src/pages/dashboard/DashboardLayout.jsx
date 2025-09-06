@@ -6,7 +6,7 @@ import { GrInProgress } from "react-icons/gr";
 import PopularDishes from "../../components/shared/home/PopularDishes";
 import BootomNav from  "../../components/shared/BootomNav";
 import OrdersPage from "../../components/shared/home/Order";
-
+import OrderLogs from "../../components/OrderLogs";
 
 const DashboardLayout = () => {
   return (

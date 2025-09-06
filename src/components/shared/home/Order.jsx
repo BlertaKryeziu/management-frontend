@@ -129,32 +129,36 @@ export default function Orders(){
         <Button onClick={addOrder} className="mt-2 bg-green-500 text-white">Add Order</Button>
       </div>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Table</TableHead>
-            <TableHead>Waiter</TableHead>
-            <TableHead>Items</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
 
-        <TableBody>
-          {orders.map(order => (
-            <TableRow key={order.id}>
-                <TableCell>{order.table_number}</TableCell>
-                <TableCell>{order.waiter}</TableCell>
-                <TableCell>{order.items}</TableCell>
-                <TableCell>{order.status}</TableCell>
-                <TableCell className="flex gap-2">
-                  <Button size="sm" className="bg-blue-500 text-white" onClick={() => handleEdit(order.id)}>Edit</Button>
-                  <Button size="sm" className="bg-red-500 text-white" onClick={() => handleDelete(order.id)}>Delete</Button>
-                </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+<div className="max-h-[200px] overflow-y-auto border rounded">
+  <Table>
+    <TableHeader className="bg-gray-200 sticky top-0 z-10"> 
+      <TableRow>
+        <TableHead>Table</TableHead>
+        <TableHead>Waiter</TableHead>
+        <TableHead>Items</TableHead>
+        <TableHead>Status</TableHead>
+        <TableHead>Actions</TableHead>
+      </TableRow>
+    </TableHeader>
+
+    <TableBody>
+      {orders.map(order => (
+        <TableRow key={order.id}>
+            <TableCell>{order.table_number}</TableCell>
+            <TableCell>{order.waiter}</TableCell>
+            <TableCell>{order.items}</TableCell>
+            <TableCell>{order.status}</TableCell>
+            <TableCell className="flex gap-2">
+              <Button size="sm" className="bg-blue-500 text-white" onClick={() => handleEdit(order.id)}>Edit</Button>
+              <Button size="sm" className="bg-red-500 text-white" onClick={() => handleDelete(order.id)}>Delete</Button>
+            </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</div>
+
     </div>
   );
 }
