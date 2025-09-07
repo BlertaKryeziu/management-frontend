@@ -12,6 +12,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { exportToCSV } from "./exportToCSV";
+
 const socket = io("http://localhost:8095");
 
 export default function Orders(){
@@ -127,6 +129,7 @@ export default function Orders(){
         </div>
 
         <Button onClick={addOrder} className="mt-2 bg-green-500 text-white">Add Order</Button>
+        <Button onClick={() => exportToCSV(orders)} className="mt-2 bg-yellow-500 text-black">Export to CSV</Button>
       </div>
 
 
@@ -158,6 +161,7 @@ export default function Orders(){
     </TableBody>
   </Table>
 </div>
+
 
     </div>
   );
