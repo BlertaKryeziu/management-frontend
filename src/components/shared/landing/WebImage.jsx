@@ -1,5 +1,5 @@
 import React from 'react'
-import TasksImg from "@/assets/img/Task.png"
+import TasksImg from "@/assets/img/picture.jpg"
 
 const WebImage = () => {
   return (

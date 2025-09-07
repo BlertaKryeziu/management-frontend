@@ -11,7 +11,7 @@ const LandingPage = () => {
         <div className='w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center'>
          <h1 className='mb-8 font-extrabold leading-none tracking-normal text-slate-800 md:text-6xl text-4xl md:tracking-tight'>
           <span>Start</span>{" "}
-          <span className='block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-red-900 to-red-500 lg:inline'>managing hotels</span>{" "}
+          <span className='block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-red-900 to-red-500 lg:inline'>managing restaurants</span>{" "}
           <span>with us!</span>
          </h1>
          <p className='px-0 mb-8 text-lg text-gray-600 md:text-xl lg:px-24'>
