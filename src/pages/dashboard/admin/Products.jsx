@@ -155,7 +155,7 @@ const Products = () => {
 
 
 
-<Table className="bg-fuchsia-400 mt-8">
+<Table className="bg-amber-50 mt-8">
   <TableCaption>A list of products</TableCaption>
   <TableHeader>
     <TableRow>
